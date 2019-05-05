@@ -55,7 +55,7 @@ body {
 .wrapper ul li{
   display: block;
   align-items: center;
-  padding: 10px;
+  padding-right: 20px;
 }
 
 .wrapper ul li .item-wrapper{
@@ -76,10 +76,10 @@ body {
 .wrapper ul li .item-wrapper .clip-title{
   position: absolute;
   top: 40px;
-  padding: 5px;
   background-color: rgba(255,0,0,0.7);
   text-align: center;
   transition: 0.2s ease;
+  width: 100%;
 }
 
 .wrapper ul li .item-wrapper a{
@@ -88,6 +88,8 @@ body {
   line-height: 20px;
   font-weight: bold;
   text-decoration: none;
+  display: block;
+  width: 100%;
 }
 
 .wrapper ul li .item-wrapper .clip-title:hover{
