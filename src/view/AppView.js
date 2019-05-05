@@ -14,6 +14,7 @@ export default class Appview {
     const loadingLogo = document.createElement('div');
     loadingLogo.classList.add('loading-logo');
     wrapper.classList.add('wrapper');
+    wrapper.setAttribute('id', 'wrapper');
     search.classList.add('search-wrapper');
     label.appendChild(content);
     content.setAttribute('placeholder', this.startQuestion);

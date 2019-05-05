@@ -24,11 +24,13 @@ export default class App {
     let question = '';
     let startTime = new Date().getTime();
     function getListOfVideos() {
+      document.getElementById('wrapper').classList.add('wrapper-pseudo');
       async function get() {
         const nowTime = new Date().getTime();
         if (question !== '' && nowTime - startTime >= 2000) {
           const resultVideos = await model.getVideos('search', question);
           const commonResult = await model.getVideos('videos', question, resultVideos);
+          await document.getElementById('wrapper').classList.remove('wrapper-pseudo');
           console.log(commonResult);
         }
       }

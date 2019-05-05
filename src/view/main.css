@@ -43,6 +43,10 @@ body {
   color:grey;
 }
 
+.wrapper-pseudo::after{
+  animation: download 1s infinite ease-in-out
+}
+
 .wrapper .search-wrapper label:before{
   font-family: 'FontAwesome';
   content:"\f002";
@@ -53,4 +57,9 @@ body {
   padding-top: 4px;
   padding-left: 4px;
   font-size: 1.2rem;
+}
+
+@keyframes download {
+  from {color: grey;}
+  to {color: red;}
 }
