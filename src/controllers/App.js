@@ -27,6 +27,7 @@ export default class App {
       document.getElementById('wrapper').classList.add('wrapper-pseudo');
       async function get() {
         const nowTime = new Date().getTime();
+
         if (question !== '' && nowTime - startTime >= 2000) {
           const resultVideos = await model.getVideos('search', question);
           const commonResult = await model.getVideos('videos', question, resultVideos);
@@ -39,6 +40,7 @@ export default class App {
     function getQuestion(e) {
       startTime = new Date().getTime();
       question = e.target.value;
+      view.clearFlow();
       getListOfVideos();
     }
     function keyDetect(e) {

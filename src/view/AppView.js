@@ -64,6 +64,7 @@ export default class Appview {
   }
 
   resultRender(data) {
+    this.clearFlow();
     if (document.getElementById('clips')) document.getElementById('clips').remove();
     this.result = data;
     const ul = document.createElement('ul');
@@ -82,5 +83,10 @@ export default class Appview {
     </li>
     `).join('');
     document.getElementById('wrapper').appendChild(ul);
+  }
+
+  clearFlow() {
+    this.result = [];
+    if (document.getElementById('clips')) document.getElementById('clips').remove();
   }
 }
