@@ -11,7 +11,7 @@ body {
 }
 
 .wrapper {
-  width: 960px;
+  max-width: 1920px;
   margin: auto;
   position: relative;
 }
@@ -23,13 +23,14 @@ body {
   z-index: 1;
   height: 25px;
   font-size: 16px;
+  border: solid 1px;
 }
+
 .wrapper label{
   display: block;
-  width: 70%;
+  width: 50%;
   margin: auto;
   position: relative;
-  height: 500px;
 }
 
 .wrapper::after{
@@ -38,13 +39,118 @@ body {
   position: absolute;
   left: 50%;
   margin-left: -125px;
-  top: 40%;
+  top: 50%;
   font-size: 250px;
   color:grey;
+  z-index: -1;
+}
+.wrapper ul{
+  display: flex;
+  z-index: 5;
+  list-style: none;
+  padding: 0;
+  justify-content: space-around;
+}
+
+.wrapper ul li{
+  display: block;
+  align-items: center;
+  padding: 10px;
+}
+
+.wrapper ul li .item-wrapper{
+  width: 250px;
+  display: block;
+  align-items: center;
+  background-color: rgba(255,255,255, 0.9);
+  height: 400px;
+  border-radius: 8px;
+  position: relative;
+  transition: 0.5s ease;
+}
+
+.wrapper ul li .item-wrapper:hover{
+  background-color: rgba(235, 13, 13, 0.4);
+}
+
+.wrapper ul li .item-wrapper .clip-title{
+  position: absolute;
+  top: 40px;
+  padding: 5px;
+  background-color: rgba(255,0,0,0.7);
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.wrapper ul li .item-wrapper a{
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.wrapper ul li .item-wrapper .clip-title:hover{
+  color: yellow;
+  transform: rotate(4deg)
+}
+
+.wrapper ul li .item-wrapper .clip-about > *{
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.wrapper ul li .item-wrapper .clip-about .clip-description{
+  margin-top: 20px;
+  text-align: justify;
+  line-height: 20px;
+}
+
+.clip-author::before{
+  font-family: 'FontAwesome';
+  content:"\f2c0";
+  position: absolute;
+  left: 15px;
+  color: grey;
+  z-index: 2;
+  font-size: 1rem;
+}
+
+.clip-date::before{
+  font-family: 'FontAwesome';
+  content:"\f073";
+  position: absolute;
+  left: 15px;
+  color: grey;
+  z-index: 2;
+  font-size: 1rem;
+}
+
+.clip-views::before{
+  font-family: 'FontAwesome';
+  content:"\f06e";
+  position: absolute;
+  left: 15px;
+  color: grey;
+  z-index: 2;
+  font-size: 1rem;
+}
+
+.wrapper ul li .item-wrapper:hover{
+  cursor: pointer;
+}
+
+.wrapper ul li img{
+  width: 100%;
+}
+
+.wrapper ul li .clip-about{
+  padding: 15px;
 }
 
 .wrapper-pseudo::after{
-  animation: download 1s infinite ease-in-out
+  animation: download 1s infinite ease-in-out;
 }
 
 .wrapper .search-wrapper label:before{
