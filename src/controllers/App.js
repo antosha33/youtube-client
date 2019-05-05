@@ -13,13 +13,13 @@ export default class App {
   }
 
   start() {
-    const view = new AppView('', this.startQuestion);
-    view.startRender();
     this.questionBuild();
   }
 
   questionBuild() {
     const model = new AppModel(this.state);
+    const view = new AppView(this.startQuestion);
+    view.startRender();
     const input = document.getElementById('main-input');
     let question = '';
     let startTime = new Date().getTime();
@@ -30,8 +30,8 @@ export default class App {
         if (question !== '' && nowTime - startTime >= 2000) {
           const resultVideos = await model.getVideos('search', question);
           const commonResult = await model.getVideos('videos', question, resultVideos);
+          await view.resultRender(commonResult);
           await document.getElementById('wrapper').classList.remove('wrapper-pseudo');
-          console.log(commonResult);
         }
       }
       setTimeout(get, 2000);
