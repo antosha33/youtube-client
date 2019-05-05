@@ -7,7 +7,8 @@ export default class App {
     this.startQuestion = 'What do you want to find ?';
     this.state = {
       baseUrl: 'https://www.googleapis.com/youtube/v3/',
-      apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
+      // apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
+      apiKey: 'AIzaSyCTWC75i70moJLzyNh3tt4jzCljZcRkU8Y',
     };
   }
 
@@ -23,9 +24,13 @@ export default class App {
     let question = '';
     let startTime = new Date().getTime();
     function getListOfVideos() {
-      function get() {
+      async function get() {
         const nowTime = new Date().getTime();
-        if (question !== '' && nowTime - startTime >= 2000) model.getVideos(question);
+        if (question !== '' && nowTime - startTime >= 2000) {
+          const resultVideos = await model.getVideos('search', question);
+          const commonResult = await model.getVideos('videos', question, resultVideos);
+          console.log(commonResult);
+        }
       }
       setTimeout(get, 2000);
     }
