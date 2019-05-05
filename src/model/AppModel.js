@@ -4,6 +4,10 @@ export default class Model {
     this.fetchResult = [];
   }
 
+  clearFetchResult() {
+    this.fetchResult = [];
+  }
+
   urlBuild(endpoint, question, resultVideos) {
     const optionSearch = {
       type: 'video',

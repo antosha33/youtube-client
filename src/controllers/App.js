@@ -41,6 +41,10 @@ export default class App {
       question = e.target.value;
       getListOfVideos();
     }
+    function keyDetect(e) {
+      if (e.code === 'Backspace') model.clearFetchResult();
+    }
     input.addEventListener('input', getQuestion);
+    input.addEventListener('keydown', keyDetect);
   }
 }
