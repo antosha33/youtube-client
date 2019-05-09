@@ -40,15 +40,19 @@ export default class Model {
           title: it.snippet.title,
           author: it.snippet.channelTitle,
           uploadDate: it.snippet.publishedAt,
-          description: it.snippet.description,
           image: it.snippet.thumbnails.medium.url,
         });
       });
     } else {
       const viewsArr = [];
-      data.items.forEach((it) => { viewsArr.push(it.statistics.viewCount); });
+      const description = [];
+      data.items.forEach((it) => {
+        viewsArr.push(it.statistics.viewCount);
+        description.push(it.snippet.description);
+      });
       for (let i = 0; i < this.fetchResult.length; i += 1) {
         this.fetchResult[i].view = viewsArr[i];
+        this.fetchResult[i].description = description[i];
       }
     }
     return this.fetchResult;

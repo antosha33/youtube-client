@@ -8,6 +8,7 @@
 body {
   background-color: #dbd9d9;
   font-size: 16px;
+  margin: 0;
 }
 
 .wrapper {
@@ -15,6 +16,7 @@ body {
   margin: auto;
   position: relative;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .wrapper input{
@@ -32,6 +34,7 @@ body {
   width: 50%;
   margin: auto;
   position: relative;
+  margin-top: 20px;
 }
 
 .wrapper::after{
@@ -47,22 +50,39 @@ body {
   margin-top: -150px;
 }
 .wrapper ul{
-  display: flex;
   z-index: 5;
   list-style: none;
   padding: 0;
-  justify-content: space-around;
   margin-top: 40px;
+}
+
+.clip-list{
+  --item-width: calc(100vw/var(--item-per-screen));
+  --item-count: 15;
+  --i: 0;
+  --tx: 0px;
+  display: grid;
+  grid-template-columns: repeat(var(--item-count), var(--item-width));
+  width: calc(var(--item-count)*var(--item-width));
+  transform: translate(calc(var(--tx) + var(--item-per-screen)*var(--item-width)*var(--i)*-1));
+  transition: transform .5s ease-out;
+}
+
+.smooth {
+  transition: transform .1s linear;
+}
+
+.clip-list:hover{
+  cursor: grab;
 }
 
 .wrapper ul li{
   display: block;
-  align-items: center;
-  padding-right: 20px;
+  justify-self: center;
+  padding: 20px;
 }
 
 .wrapper ul li .item-wrapper{
-  width: 250px;
   display: block;
   align-items: center;
   background-color: rgba(255,255,255, 0.9);
@@ -70,16 +90,19 @@ body {
   border-radius: 8px;
   position: relative;
   transition: 0.5s ease;
+  overflow: hidden;
+  user-select: none;
 }
 
 .wrapper ul li .item-wrapper:hover{
-  background-color: rgba(235, 13, 13, 0.4);
+  background-color: rgba(235, 0, 0, 1);
+  color: #fff;
 }
 
 .wrapper ul li .item-wrapper .clip-title{
   position: absolute;
   top: 40px;
-  background-color: rgba(255,0,0,0.7);
+  background-color: rgba(255,0,0,0.9);
   text-align: center;
   transition: 0.2s ease;
   width: 100%;
@@ -110,6 +133,7 @@ body {
   margin-top: 20px;
   text-align: justify;
   line-height: 20px;
+  word-break: break-word;
 }
 
 .clip-author::before{
@@ -142,12 +166,9 @@ body {
   font-size: 1rem;
 }
 
-.wrapper ul li .item-wrapper:hover{
-  cursor: pointer;
-}
-
 .wrapper ul li img{
   width: 100%;
+  pointer-events: none;
 }
 
 .wrapper ul li .clip-about{
@@ -173,4 +194,45 @@ body {
 @keyframes download {
   from {color: grey;}
   to {color: red;}
+}
+
+.navbar{
+  width:100px;
+  margin: auto;
+  display: flex;
+}
+
+.navbar > *{
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  color: grey;
+  font-size: 14px;
+  position: relative;
+}
+
+.navbar .prev::before{
+  content: "\f137";
+  font-family: "FontAwesome";
+  color: grey;
+  position: absolute;
+  font-size: 20px;
+}
+
+.navbar .next::before{
+  content: "\f138";
+  font-family: "FontAwesome";
+  color: grey;
+  position: absolute;
+  font-size: 20px;
+}
+
+.navbar .page{
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  text-align: center;
+  padding-top: 3px;
 }
