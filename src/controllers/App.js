@@ -66,7 +66,7 @@ export default class App {
     }
     function drag(e) {
       if (locked) {
-        if (Math.abs(e.clientX - x0) < 400) {
+        if (Math.abs(e.clientX - x0) < 600) {
           clips.style.setProperty('--tx', '0px');
           clips.style.setProperty('--tx', `${Math.round(e.clientX - x0)}px`);
           clips.classList.add('smooth');
@@ -87,14 +87,14 @@ export default class App {
         const diff = Math.sign(x0 - e.clientX);
         if (diff > 0) {
           clips.style.setProperty('--i', i += 1);
-          page.innerHTML = i + 1;
+          page.innerHTML = `<span>${i + 1}</span>`;
           locked = false;
           if ((i + 1) * itemPerScreen >= itemCount - 5) {
             getNext();
           }
         } else if (i > 0 && diff < 0) {
           clips.style.setProperty('--i', i -= 1);
-          page.innerHTML = i + 1;
+          page.innerHTML = `<span>${i + 1}</span>`;
           locked = false;
         }
         clips.classList.toggle('smooth');
@@ -105,7 +105,7 @@ export default class App {
     function setNextI() {
       if (i + 1 < itemCount / itemPerScreen) {
         clips.style.setProperty('--i', i += 1);
-        page.innerHTML = i + 1;
+        page.innerHTML = `<span>${i + 1}</span>`;
       }
       if ((i + 1) * itemPerScreen >= itemCount - 5) {
         getNext();
@@ -114,7 +114,7 @@ export default class App {
     function setPrevI() {
       if (i > 0) {
         clips.style.setProperty('--i', i -= 1);
-        page.innerHTML = i + 1;
+        page.innerHTML = `<span>${i + 1}</span>`;
       }
     }
     function defaultTx() {

@@ -69,7 +69,7 @@ body {
 }
 
 .smooth {
-  transition: transform .1s linear;
+  transition: transform 0.05s linear;
 }
 
 .clip-list:hover{
@@ -229,10 +229,27 @@ body {
   font-size: 20px;
 }
 
+.navbar .next:hover::before{
+  color: red;
+  cursor: pointer;
+}
+
+.navbar .prev:hover::before{
+  color: red;
+  cursor: pointer;
+}
+
+
 .navbar .page{
   width: 20px;
   height: 20px;
   background-color: #fff;
   text-align: center;
-  padding-top: 3px;
+  display: grid;
+}
+
+.page span{
+  display: block;
+  align-self: center;
+  user-select: none;
 }
