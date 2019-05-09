@@ -92,7 +92,7 @@ export default class App {
           if ((i + 1) * itemPerScreen >= itemCount - 5) {
             getNext();
           }
-        } else if (i > 0) {
+        } else if (i > 0 && diff < 0) {
           clips.style.setProperty('--i', i -= 1);
           page.innerHTML = i + 1;
           locked = false;
