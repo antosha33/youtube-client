@@ -128,6 +128,27 @@ export default class Appview {
     document.getElementById('wrapper').appendChild(navbar);
   }
 
+  addResults(data) {
+    this.result = data;
+    const clips = document.getElementById('clips');
+    const liArray = this.result.map(item => `
+      <div class='item-wrapper'>
+      <img class='clip-logo' src='${item.image}'>
+      <a href='https://www.youtube.com/watch?v=${item.id}' target='_blank'><div class='clip-title'>${item.title}</div></a>
+        <div class='clip-about'>
+        <div class='clip-author'>${item.author}</div>
+        <div class='clip-date'>${item.uploadDate.slice(0, -14)}</div>
+        <div class='clip-views'>${item.view}</div>
+        <div class='clip-description'>${item.description}</div>
+        </div>
+      </div>`);
+    liArray.forEach((it) => {
+      const li = document.createElement('li');
+      li.innerHTML = it;
+      clips.appendChild(li);
+    });
+  }
+
   clearFlow() {
     this.result = [];
     if (document.getElementById('clips')) document.getElementById('clips').remove();

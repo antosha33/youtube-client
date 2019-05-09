@@ -2,6 +2,7 @@ export default class Model {
   constructor(state) {
     this.state = state;
     this.fetchResult = [];
+    this.nextPageToken = null;
   }
 
   clearFetchResult() {
@@ -21,6 +22,9 @@ export default class Model {
       Object.keys(optionSearch).forEach((key) => {
         url += `&${key}=${optionSearch[key]}`;
       });
+      if (this.nextPageToken !== null) {
+        url += `&pageToken=${this.nextPageToken}`;
+      }
     } else if (endpoint === 'videos') {
       url = `${baseUrl}${endpoint}?key=${apiKey}&id=`;
       resultVideos.forEach((key) => {
@@ -33,6 +37,8 @@ export default class Model {
   }
 
   getVideoItems(data) {
+    console.log(data);
+    if (data.nextPageToken !== undefined) this.nextPageToken = data.nextPageToken;
     if (data.items[0].statistics === undefined) {
       data.items.forEach((it) => {
         this.fetchResult.push({
