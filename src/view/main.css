@@ -25,9 +25,18 @@ body {
   z-index: 1;
   height: 25px;
   font-size: 16px;
+  font-weight: bold;
   border: solid 1px;
   text-align: center;
   border-radius: 10px;
+  color: #fff;
+  letter-spacing: 1.1px;
+  background-color: rgba(102, 100, 100, 0.4);
+}
+
+.wrapper input:focus{
+  outline: none;
+  border-color: red; 
 }
 
 .wrapper label{
