@@ -37,7 +37,6 @@ export default class Model {
   }
 
   getVideoItems(data) {
-    console.log(data);
     if (data.nextPageToken !== undefined) this.nextPageToken = data.nextPageToken;
     if (data.items[0].statistics === undefined) {
       data.items.forEach((it) => {

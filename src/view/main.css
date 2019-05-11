@@ -57,6 +57,7 @@ body {
 }
 
 .clip-list{
+  --item-per-screen: 4;
   --item-width: calc(100vw/var(--item-per-screen));
   --item-count: 15;
   --i: 0;
@@ -80,13 +81,14 @@ body {
   display: block;
   justify-self: center;
   padding: 20px;
+  width: 80%;
 }
 
 .wrapper ul li .item-wrapper{
   display: block;
   align-items: center;
   background-color: rgba(255,255,255, 0.9);
-  height: 400px;
+  height: 60vh;
   border-radius: 8px;
   position: relative;
   transition: 0.5s ease;
@@ -252,4 +254,22 @@ body {
   display: block;
   align-self: center;
   user-select: none;
+}
+
+@media (max-width: 1024px){
+  .clip-list{
+    --item-per-screen: 3;
+  }
+}
+
+@media (max-width: 768px){
+  .clip-list{
+    --item-per-screen: 2;
+  }
+}
+
+@media (max-width: 480px){
+  .clip-list{
+    --item-per-screen: 1;
+  }
 }

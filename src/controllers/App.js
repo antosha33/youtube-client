@@ -5,6 +5,7 @@ import AppModel from '../model/AppModel';
 export default class App {
   constructor() {
     this.startQuestion = 'What do you want to find ?';
+    this.itemPerScreen = 4;
     this.state = {
       baseUrl: 'https://www.googleapis.com/youtube/v3/',
       // apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
@@ -49,7 +50,7 @@ export default class App {
 
   static slider(question, model, view) {
     const clips = document.getElementById('clips');
-    const itemPerScreen = 4;
+    let itemPerScreen = 4;
     let itemCount = 15;
     const next = document.getElementById('next');
     const prev = document.getElementById('prev');
@@ -57,18 +58,30 @@ export default class App {
     let x0 = null;
     let i = 0;
     let locked = false;
-    clips.style.setProperty('--item-per-screen', itemPerScreen);
-    clips.style.setProperty('--item-count', itemCount);
+    function screenSizeDetect() {
+      const size = window.screen.width;
+      if (size <= 1024 && size > 768) {
+        itemPerScreen = 3;
+      } else if (size <= 768 && size > 480) {
+        itemPerScreen = 2;
+      } else if (size <= 480) {
+        itemPerScreen = 1;
+      }
+    }
+    screenSizeDetect();
+    function unify(e) {
+      return e.changedTouches ? e.changedTouches[0] : e;
+    }
     function point(e) {
-      x0 = e.clientX;
+      x0 = unify(e).clientX;
       clips.classList.toggle('smooth');
       locked = true;
     }
     function drag(e) {
       if (locked) {
-        if (Math.abs(e.clientX - x0) < 600) {
+        if (Math.abs(unify(e).clientX - x0) < 600) {
           clips.style.setProperty('--tx', '0px');
-          clips.style.setProperty('--tx', `${Math.round(e.clientX - x0)}px`);
+          clips.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`);
           clips.classList.add('smooth');
         }
       }
@@ -84,7 +97,7 @@ export default class App {
     function move(e) {
       if (locked) {
         const tx = clips.style;
-        const diff = Math.sign(x0 - e.clientX);
+        const diff = Math.sign(x0 - unify(e).clientX);
         if (diff > 0) {
           clips.style.setProperty('--i', i += 1);
           page.innerHTML = `<span>${i + 1}</span>`;
@@ -122,8 +135,11 @@ export default class App {
       clips.style.setProperty('--tx', '0px');
     }
     clips.addEventListener('mousedown', point);
+    clips.addEventListener('touchstart', point);
     clips.addEventListener('mouseup', move);
+    clips.addEventListener('touchend', move);
     clips.addEventListener('mousemove', drag);
+    clips.addEventListener('touchmove', drag);
     clips.addEventListener('mouseleave', defaultTx);
     next.addEventListener('click', setNextI);
     prev.addEventListener('click', setPrevI);
