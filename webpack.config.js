@@ -8,6 +8,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'source-map',
+  devServer: {
+    inline: true,
+    contentBase: './src',
+    port: 8080,
+    host: '192.168.31.232',
+  },
   module: {
     rules: [
       // { enforce: 'pre', test: /\.js$/, loader: 'eslint-loader' },
