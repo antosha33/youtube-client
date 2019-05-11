@@ -78,6 +78,10 @@ export default class App {
       locked = true;
     }
     function drag(e) {
+      const isTitle = e.target.className;
+      if (isTitle === 'clip-title') {
+        locked = false;
+      }
       if (locked) {
         if (Math.abs(unify(e).clientX - x0) < 600) {
           clips.style.setProperty('--tx', '0px');
