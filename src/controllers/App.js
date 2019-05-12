@@ -31,9 +31,9 @@ export default class App {
         if (question !== '' && nowTime - startTime >= 2000) {
           const resultVideos = await model.getVideos('search', question);
           const commonResult = await model.getVideos('videos', question, resultVideos);
-          await view.resultRender(commonResult);
-          await document.getElementById('wrapper').classList.remove('wrapper-pseudo');
-          await App.slider(question, model, view);
+          view.resultRender(commonResult);
+          document.getElementById('wrapper').classList.remove('wrapper-pseudo');
+          App.slider(question, model, view);
         }
       }
       setTimeout(get, 2000);
@@ -94,7 +94,7 @@ export default class App {
       model.clearFetchResult();
       const resultVideos = await model.getVideos('search', question);
       const commonResult = await model.getVideos('videos', question, resultVideos);
-      await view.addResults(commonResult);
+      view.addResults(commonResult);
       itemCount = clips.children.length;
       clips.style.setProperty('--item-count', itemCount);
     }

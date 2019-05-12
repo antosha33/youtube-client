@@ -1,7 +1,12 @@
 import AppModel from './AppModel';
 
+const state = {
+  baseUrl: 'https://www.googleapis.com/youtube/v3/',
+  apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
+};
+const App = new AppModel(state);
+
 describe('AppModel.getVideoItems', () => {
-  const App = new AppModel();
   const data = {
     items: [
       {
@@ -113,5 +118,48 @@ describe('AppModel.getVideoItems', () => {
         },
       ],
     );
+  });
+});
+
+describe('AppModel.urlBuild', () => {
+  const result = App.urlBuild('search', 'test_question');
+  it('Should return a valid url for search request', () => {
+    expect(result).toBe('https://www.googleapis.com/youtube/v3/search?key=AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8&type=video&part=snippet&maxResults=15&q=test_question');
+  });
+  const resultVideos = [
+    { id: 'v_ubFrzulMc' },
+    { id: 'TOl7w_nzud0' },
+    { id: 'em7vEYnBV9s' },
+    { id: 'Hnus0f3NlUw' },
+    { id: '8OLvVZ6PjKg' },
+    { id: 'gCv-uv2-PjY' },
+    { id: '-WXQldd4Wos' },
+    { id: 'SLFPRDoQ28s' },
+    { id: 'K_YPF95JJ98' },
+    { id: 'CE_GdbAddlk' },
+    { id: 'KvAbxY7uqzk' },
+    { id: 'aXI8DpSIGZ4' },
+    { id: '_GGzFePW7i8' },
+    { id: '0XexwKTxfHk' },
+    { id: 'XSohXHylOn8' },
+  ];
+  const result2 = App.urlBuild('videos', 'test_question', resultVideos);
+  it('Should return a valid url for videos request', () => {
+    expect(result2).toBe('https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8&id=v_ubFrzulMc,TOl7w_nzud0,em7vEYnBV9s,Hnus0f3NlUw,8OLvVZ6PjKg,gCv-uv2-PjY,-WXQldd4Wos,SLFPRDoQ28s,K_YPF95JJ98,CE_GdbAddlk,KvAbxY7uqzk,aXI8DpSIGZ4,_GGzFePW7i8,0XexwKTxfHk,XSohXHylOn8,&part=snippet,statistics');
+  });
+});
+
+describe('AppModel.getVideos', () => {
+  it('Should be an instance of Promise', () => {
+    const result = App.getVideos('search', 'rolling scopes school');
+    expect(result).toBeInstanceOf(Promise);
+  });
+});
+
+describe('AppModel.clearFetchResult', () => {
+  App.getVideos('search', 'rolling scopes school');
+  it('Should clear fetchResult', () => {
+    App.clearFetchResult();
+    expect(App.fetchResult).toEqual([]);
   });
 });

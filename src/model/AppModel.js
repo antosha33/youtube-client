@@ -67,7 +67,7 @@ export default class Model {
     try {
       const response = await fetch(this.urlBuild(endpoint, question, resultVideos));
       const data = await response.json();
-      return await this.getVideoItems(data);
+      return this.getVideoItems(data);
     } catch (e) {
       return e;
     }
