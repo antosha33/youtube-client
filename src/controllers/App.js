@@ -54,6 +54,7 @@ export default class App {
     let itemCount = 15;
     const next = document.getElementById('next');
     const prev = document.getElementById('prev');
+    const prevPrev = document.getElementById('prevPrev');
     const page = document.getElementById('page');
     let x0 = null;
     let i = 0;
@@ -106,6 +107,9 @@ export default class App {
           clips.style.setProperty('--i', i += 1);
           page.innerHTML = `<span>${i + 1}</span>`;
           locked = false;
+          if (i > 1) {
+            prevPrev.style.display = 'block';
+          }
           if ((i + 1) * itemPerScreen >= itemCount - 5) {
             getNext();
           }
@@ -113,6 +117,9 @@ export default class App {
           clips.style.setProperty('--i', i -= 1);
           page.innerHTML = `<span>${i + 1}</span>`;
           locked = false;
+          if (i <= 1) {
+            prevPrev.style.display = 'none';
+          }
         }
         clips.classList.toggle('smooth');
         locked = false;
@@ -127,16 +134,32 @@ export default class App {
       if ((i + 1) * itemPerScreen >= itemCount - 5) {
         getNext();
       }
+      if (i > 1) {
+        prevPrev.style.display = 'block';
+      }
     }
     function setPrevI() {
       if (i > 0) {
         clips.style.setProperty('--i', i -= 1);
         page.innerHTML = `<span>${i + 1}</span>`;
       }
+      if (i <= 1) {
+        prevPrev.style.display = 'none';
+      }
     }
     function defaultTx() {
       locked = false;
       clips.style.setProperty('--tx', '0px');
+    }
+    function setprevPrevI() {
+      if (i > 0) {
+        i -= 2;
+        clips.style.setProperty('--i', i);
+        page.innerHTML = `<span>${i + 1}</span>`;
+      }
+      if (i <= 1) {
+        prevPrev.style.display = 'none';
+      }
     }
     clips.addEventListener('mousedown', point);
     clips.addEventListener('touchstart', point);
@@ -147,5 +170,6 @@ export default class App {
     clips.addEventListener('mouseleave', defaultTx);
     next.addEventListener('click', setNextI);
     prev.addEventListener('click', setPrevI);
+    prevPrev.addEventListener('click', setprevPrevI);
   }
 }

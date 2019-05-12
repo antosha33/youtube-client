@@ -124,7 +124,7 @@ export default class Appview {
     const navbar = document.createElement('div');
     navbar.classList.add('navbar');
     navbar.setAttribute('id', 'navbar');
-    navbar.innerHTML = '<div class="prev" id="prev"></div><div class="page" id="page"><span>1</span></div><div class="next" id="next"</div>';
+    navbar.innerHTML = '<div class="prevPrev" id="prevPrev"></div><div class="prev" id="prev"></div><div class="page" id="page"><span>1</span></div><div class="next" id="next"</div>';
     document.getElementById('wrapper').appendChild(navbar);
   }
 
