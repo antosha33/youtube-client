@@ -8,8 +8,7 @@ export default class App {
     this.itemPerScreen = 4;
     this.state = {
       baseUrl: 'https://www.googleapis.com/youtube/v3/',
-      // apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
-      apiKey: 'AIzaSyCTWC75i70moJLzyNh3tt4jzCljZcRkU8Y',
+      apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
     };
   }
 

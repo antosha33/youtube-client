@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppView.startRender && AppView.resultRender Should be rendered correctly 1`] = `"<div class=\\"wrapper\\" id=\\"wrapper\\"><div class=\\"search-wrapper\\"><label><input placeholder=\\"What do you want to find ?\\" name=\\"main-search\\" id=\\"main-input\\"></label></div><div class=\\"loading-logo\\"></div></div><div class=\\"wrapper\\" id=\\"wrapper\\"><div class=\\"search-wrapper\\"><label><input placeholder=\\"undefined\\" name=\\"main-search\\" id=\\"main-input\\"></label></div><div class=\\"loading-logo\\"></div></div>"`;
