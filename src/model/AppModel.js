@@ -69,7 +69,7 @@ export default class Model {
       const data = await response.json();
       return this.getVideoItems(data);
     } catch (e) {
-      return e;
+      return 'something went wrong...please, repeat your question';
     }
   }
 }

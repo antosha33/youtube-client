@@ -75,6 +75,16 @@ export default class Appview {
     });
   }
 
+  errorRender(response) {
+    this.result = [];
+    const wrapper = document.getElementById('wrapper');
+    const div = document.createElement('div');
+    div.setAttribute('id', 'error');
+    div.classList.add('error');
+    div.textContent = response;
+    wrapper.appendChild(div);
+  }
+
   clearFlow() {
     this.result = [];
     if (document.getElementById('clips')) document.getElementById('clips').remove();

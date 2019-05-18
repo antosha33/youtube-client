@@ -288,6 +288,17 @@ input::-webkit-input-placeholder{
   user-select: none;
 }
 
+.error{
+  display: flex;
+  justify-content: center;
+  background-color:rgba(128,128,128,0.6);
+  padding: 25px;
+  margin-top: 40px;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+}
+
 @media (max-width: 1024px){
   .clip-list{
     --item-per-screen: 3;

@@ -8,7 +8,8 @@ export default class App {
     this.itemPerScreen = 4;
     this.state = {
       baseUrl: 'https://www.googleapis.com/youtube/v3/',
-      apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
+      // apiKey: 'AIzaSyBwvLzk6ZxqPOLGQwz3T_2WAXhBWzjKA_8',
+      apiKey: 'AIzaSyCTWC75i70moJLzyNh3tt4jzCljZcRkU8Y',
     };
   }
 
@@ -29,10 +30,14 @@ export default class App {
         const nowTime = new Date().getTime();
         if (question !== '' && nowTime - startTime >= 2000) {
           const resultVideos = await model.getVideos('search', question);
-          const commonResult = await model.getVideos('videos', question, resultVideos);
-          view.resultRender(commonResult);
-          document.getElementById('wrapper').classList.remove('wrapper-pseudo');
-          App.slider(question, model, view);
+          if (typeof resultVideos !== 'string') {
+            const commonResult = await model.getVideos('videos', question, resultVideos);
+            view.resultRender(commonResult);
+            document.getElementById('wrapper').classList.remove('wrapper-pseudo');
+            App.slider(question, model, view);
+          } else {
+            view.errorRender(resultVideos);
+          }
         }
       }
       setTimeout(get, 2000);
@@ -83,11 +88,9 @@ export default class App {
         locked = false;
       }
       if (locked) {
-        if (Math.abs(unify(e).clientX - x0) < 600) {
-          clips.style.setProperty('--tx', '0px');
-          clips.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`);
-          clips.classList.add('smooth');
-        }
+        clips.style.setProperty('--tx', '0px');
+        clips.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`);
+        clips.classList.add('smooth');
       }
     }
     async function getNext() {
