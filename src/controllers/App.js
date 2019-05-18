@@ -29,8 +29,10 @@ export default class App {
       async function get() {
         const nowTime = new Date().getTime();
         if (question !== '' && nowTime - startTime >= 2000) {
+          const error = document.getElementById('error');
           const resultVideos = await model.getVideos('search', question);
           if (typeof resultVideos !== 'string') {
+            if (error) error.remove();
             const commonResult = await model.getVideos('videos', question, resultVideos);
             view.resultRender(commonResult);
             document.getElementById('wrapper').classList.remove('wrapper-pseudo');
