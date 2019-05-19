@@ -78,11 +78,14 @@ export default class Appview {
   errorRender(response) {
     this.result = [];
     const wrapper = document.getElementById('wrapper');
+    const error = document.getElementById('error');
     const div = document.createElement('div');
-    div.setAttribute('id', 'error');
-    div.classList.add('error');
-    div.textContent = response;
-    wrapper.appendChild(div);
+    if (!error) {
+      div.setAttribute('id', 'error');
+      div.classList.add('error');
+      div.textContent = response;
+      wrapper.appendChild(div);
+    }
   }
 
   clearFlow() {
