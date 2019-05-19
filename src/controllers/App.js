@@ -165,6 +165,22 @@ export default class App {
         prevPrev.style.display = 'none';
       }
     }
+    function setTooltip(e) {
+      if (e.target.children.length === 0 && e.target.className !== 'tooltip') {
+        if (e.target.className === 'next') {
+          e.target.innerHTML = `<span class="tooltip">${i + 2}</span>`;
+        } else if (e.target.className === 'prev') {
+          e.target.innerHTML = `<span class="tooltip">${i}</span>`;
+        } else if (e.target.className === 'prevPrev') {
+          e.target.innerHTML = `<span class="tooltip">${i - 1}</span>`;
+        }
+      }
+    }
+    function removeTooltip(e) {
+      if (e.target.children.length !== 0) {
+        e.target.children[0].remove();
+      }
+    }
     clips.addEventListener('mousedown', point);
     clips.addEventListener('touchstart', point);
     clips.addEventListener('mouseup', move);
@@ -173,7 +189,13 @@ export default class App {
     clips.addEventListener('touchmove', drag);
     clips.addEventListener('mouseleave', defaultTx);
     next.addEventListener('click', setNextI);
+    next.addEventListener('mousedown', setTooltip);
+    next.addEventListener('mouseup', removeTooltip);
+    prev.addEventListener('mousedown', setTooltip);
+    prev.addEventListener('mouseup', removeTooltip);
     prev.addEventListener('click', setPrevI);
     prevPrev.addEventListener('click', setprevPrevI);
+    prevPrev.addEventListener('mousedown', setTooltip);
+    prevPrev.addEventListener('mouseup', removeTooltip);
   }
 }
